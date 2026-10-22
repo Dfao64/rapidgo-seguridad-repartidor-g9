@@ -1,0 +1,7 @@
+name: rapidgo360
+
+# Configuración preliminar - Semana 1
+# Kafka, Spark y Airflow se incorporarán
+# durante las siguientes semanas.
+
+services: {}
