@@ -1,0 +1,11 @@
+{
+  "event_id": "evt-000001",
+  "repartidor_id": "REP-009",
+  "pedido_id": "PED-1024",
+  "timestamp": "2026-10-22T14:30:00Z",
+  "gps": {"latitud": 4.7320, "longitud": -74.2640},
+  "velocidad_kmh": 68.5,
+  "bateria_pct": 12,
+  "estado": "EN_RUTA",
+  "desvio_metros": 180
+}
