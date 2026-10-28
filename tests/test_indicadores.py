@@ -1,6 +1,5 @@
 from spark.indicadores import calcular_indicadores
 
-
 def evento(rep="REP-001", velocidad=40, bateria=80, desvio=100):
     return {
         "event_id": f"evt-{rep}-{velocidad}-{bateria}-{desvio}", "repartidor_id": rep,
