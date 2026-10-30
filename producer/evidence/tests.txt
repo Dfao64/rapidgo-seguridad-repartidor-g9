@@ -1,0 +1,52 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-8.3.5, pluggy-1.7.0 -- C:\Users\Daniel Abello\Documents\Codex\2026-10-30\referenced-chatgpt-conversation-this-is-an\work\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Daniel Abello\Documents\Codex\2026-10-30\referenced-chatgpt-conversation-this-is-an\work\repo
+configfile: pytest.ini
+collecting ... collected 43 items
+
+tests/test_alertas.py::test_velocidad_borde PASSED                       [  2%]
+tests/test_alertas.py::test_bateria_borde PASSED                         [  4%]
+tests/test_alertas.py::test_desvio_borde PASSED                          [  6%]
+tests/test_alertas.py::test_evento_normal_no_alerta PASSED               [  9%]
+tests/test_alertas.py::test_exceso_de_velocidad_alerta PASSED            [ 11%]
+tests/test_alertas.py::test_bateria_critica_alerta PASSED                [ 13%]
+tests/test_alertas.py::test_dos_alertas_a_la_vez PASSED                  [ 16%]
+tests/test_alertas.py::test_evento_invalido_no_genera_alertas PASSED     [ 18%]
+tests/test_contrato_evento.py::test_ejemplo_es_valido PASSED             [ 20%]
+tests/test_contrato_evento.py::test_ejemplo_tiene_todos_los_campos PASSED [ 23%]
+tests/test_contrato_evento.py::test_falta_pedido_id_es_invalido PASSED   [ 25%]
+tests/test_contrato_evento.py::test_bateria_fuera_de_rango_es_invalida PASSED [ 27%]
+tests/test_contrato_evento.py::test_velocidad_negativa_es_invalida PASSED [ 30%]
+tests/test_contrato_evento.py::test_latitud_fuera_de_rango_es_invalida PASSED [ 32%]
+tests/test_contrato_evento.py::test_estado_desconocido_es_invalido PASSED [ 34%]
+tests/test_contrato_evento.py::test_timestamp_mal_formado_es_invalido PASSED [ 37%]
+tests/test_contrato_evento.py::test_sin_desvio_sigue_siendo_valido PASSED [ 39%]
+tests/test_indicadores.py::test_velocidad_promedio_por_repartidor PASSED [ 41%]
+tests/test_indicadores.py::test_separa_repartidores PASSED               [ 44%]
+tests/test_indicadores.py::test_cuenta_bateria_critica PASSED            [ 46%]
+tests/test_indicadores.py::test_cuenta_exceso_de_velocidad PASSED        [ 48%]
+tests/test_indicadores.py::test_desvio_critico_y_porcentaje PASSED       [ 51%]
+tests/test_indicadores.py::test_eventos_sin_desvio_se_excluyen_del_kpi3 PASSED [ 53%]
+tests/test_indicadores.py::test_sin_ningun_desvio_el_porcentaje_es_none PASSED [ 55%]
+tests/test_indicadores.py::test_descarta_eventos_invalidos PASSED        [ 58%]
+tests/test_indicadores.py::test_lista_vacia PASSED                       [ 60%]
+tests/test_producer.py::test_replay_contract_ids_and_order PASSED        [ 62%]
+tests/test_producer.py::test_many_events_cover_states_and_alert_scenarios PASSED [ 65%]
+tests/test_producer.py::test_invalid_config[--interval-nan] PASSED       [ 67%]
+tests/test_producer.py::test_invalid_config[--interval-inf] PASSED       [ 69%]
+tests/test_producer.py::test_invalid_config[--interval-0] PASSED         [ 72%]
+tests/test_producer.py::test_invalid_config[--interval-1.5] PASSED       [ 74%]
+tests/test_producer.py::test_invalid_config[--riders-0] PASSED           [ 76%]
+tests/test_producer.py::test_invalid_config[--rounds--1] PASSED          [ 79%]
+tests/test_producer.py::test_invalid_config[--start-time-bad] PASSED     [ 81%]
+tests/test_producer.py::test_invalid_config[--run-id-] PASSED            [ 83%]
+tests/test_producer.py::test_environment_and_cli_precedence PASSED       [ 86%]
+tests/test_producer.py::test_publish_ack_key_json_and_frequency PASSED   [ 88%]
+tests/test_producer.py::test_failure_is_not_reported_as_delivery PASSED  [ 90%]
+tests/test_producer.py::test_cli_dry_run_without_kafka PASSED            [ 93%]
+tests/test_producer.py::test_deviation_matches_reference_meridian PASSED [ 95%]
+tests/test_producer.py::test_cli_connection_failure_returns_nonzero PASSED [ 97%]
+tests/test_producer.py::test_cli_closes_client_on_delivery_failure PASSED [100%]
+
+============================= 43 passed in 0.63s ==============================

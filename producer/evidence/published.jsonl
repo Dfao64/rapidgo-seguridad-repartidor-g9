@@ -1,0 +1,12 @@
+{"event_id": "279b1b4e-ee67-586c-b0c5-9e6ab7bba80c", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 0}
+{"event_id": "568112b6-3179-5186-b342-e399f7e5121b", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 1}
+{"event_id": "fb34fe33-d711-55fa-b42b-5ad393157d7e", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 2}
+{"event_id": "3e2023a7-a98c-5b63-b986-337ec4c839d0", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 3}
+{"event_id": "b6bfdafc-fc17-5a38-a70f-e6a665c714ab", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 4}
+{"event_id": "acf0f91c-1771-5db6-990d-6376be3b0ddc", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 5}
+{"event_id": "30f587a1-f940-50c8-805c-860230173f64", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 6}
+{"event_id": "39ac8ac9-2b77-5446-bcce-7c413e5d5afa", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 7}
+{"event_id": "9c6daca4-a3b6-5dda-be12-a6fc2a1cfc58", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 8}
+{"event_id": "dd39a722-05e6-55ed-ab56-e44b660aec0f", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 9}
+{"event_id": "ea8787f9-7e82-54f1-95ee-8aa68febb3f7", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 10}
+{"event_id": "e6b3bd72-fa70-5d73-b1d9-f7e1c06e3645", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 11}
