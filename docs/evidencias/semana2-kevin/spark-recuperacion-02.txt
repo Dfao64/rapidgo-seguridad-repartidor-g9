@@ -1,0 +1,265 @@
+:: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+docker : Ivy Default Cache set to: /root/.ivy2/cache
+En línea: 1 Carácter: 1
++ docker compose exec -T spark /opt/spark/bin/spark-submit --master "lo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Ivy Default Cac...oot/.ivy2/cache:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+The jars for the packages stored in: /root/.ivy2/jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-d3e5a5d1-0dae-4d05-b1bd-4f9c4ab63199;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.7 in central
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.7 in central
+	found org.apache.kafka#kafka-clients;3.4.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.5 in central
+	found org.slf4j#slf4j-api;2.0.7 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 1937ms :: artifacts dl 52ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from central in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.4.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.7 from central in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.7 from central in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.7 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   0   |   0   |   0   ||   11  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-d3e5a5d1-0dae-4d05-b1bd-4f9c4ab63199
+	confs: [default]
+	0 artifacts copied, 11 already retrieved (0kB/54ms)
+26/10/30 17:20:58 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/10/30 17:21:02 INFO SparkContext: Running Spark version 3.5.7
+26/10/30 17:21:02 INFO SparkContext: OS info Linux, 6.18.40.1-microsoft-standard-WSL2, amd64
+26/10/30 17:21:02 INFO SparkContext: Java version 11.0.27
+26/10/30 17:21:02 INFO ResourceUtils: ==============================================================
+26/10/30 17:21:02 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/10/30 17:21:02 INFO ResourceUtils: ==============================================================
+26/10/30 17:21:02 INFO SparkContext: Submitted application: RapidGo-Kevin-Semana2
+26/10/30 17:21:02 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap,
+amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/10/30 17:21:02 INFO ResourceProfile: Limiting resource is cpu
+26/10/30 17:21:02 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/10/30 17:21:02 INFO SecurityManager: Changing view acls to: root
+26/10/30 17:21:02 INFO SecurityManager: Changing modify acls to: root
+26/10/30 17:21:02 INFO SecurityManager: Changing view acls groups to:
+26/10/30 17:21:02 INFO SecurityManager: Changing modify acls groups to:
+26/10/30 17:21:02 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify
+permissions: EMPTY
+26/10/30 17:21:03 INFO Utils: Successfully started service 'sparkDriver' on port 37885.
+26/10/30 17:21:03 INFO SparkEnv: Registering MapOutputTracker
+26/10/30 17:21:03 INFO SparkEnv: Registering BlockManagerMaster
+26/10/30 17:21:03 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/10/30 17:21:03 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/10/30 17:21:03 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/30 17:21:03 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-4679d42c-76a0-43ef-8af6-bbe3ad078ec2
+26/10/30 17:21:03 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/10/30 17:21:03 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/30 17:21:03 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/10/30 17:21:03 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar at spark://c5c633a466ce:37885/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar with timestamp
+1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar at spark://c5c633a466ce:37885/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar
+with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar at spark://c5c633a466ce:37885/jars/org.apache.kafka_kafka-clients-3.4.1.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at spark://c5c633a466ce:37885/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at spark://c5c633a466ce:37885/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar at spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at spark://c5c633a466ce:37885/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar at spark://c5c633a466ce:37885/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar at spark://c5c633a466ce:37885/jars/org.slf4j_slf4j-api-2.0.7.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar at spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added JAR file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at spark://c5c633a466ce:37885/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar at file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar at file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar with
+timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar at file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.kafka_kafka-clients-3.4.1.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/com.google.code.findbugs_jsr305-3.0.0.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.commons_commons-pool2-2.11.1.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar at file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.lz4_lz4-java-1.8.0.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar at file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.xerial.snappy_snappy-java-1.1.10.5.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar at file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.slf4j_slf4j-api-2.0.7.jar
+26/10/30 17:21:04 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar at file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:04 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-api-3.3.4.jar
+26/10/30 17:21:05 INFO SparkContext: Added file file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: Copying /root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/commons-logging_commons-logging-1.1.3.jar
+26/10/30 17:21:05 INFO Executor: Starting executor ID driver on host c5c633a466ce
+26/10/30 17:21:05 INFO Executor: OS info Linux, 6.18.40.1-microsoft-standard-WSL2, amd64
+26/10/30 17:21:05 INFO Executor: Java version 11.0.27
+26/10/30 17:21:05 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/10/30 17:21:05 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@33dc346d for default.
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-api-3.3.4.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/com.google.code.findbugs_jsr305-3.0.0.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.slf4j_slf4j-api-2.0.7.jar has been previously copied to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.slf4j_slf4j-api-2.0.7.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.xerial.snappy_snappy-java-1.1.10.5.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.commons_commons-pool2-2.11.1.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/commons-logging_commons-logging-1.1.3.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar has been previously copied to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.lz4_lz4-java-1.8.0.jar
+26/10/30 17:21:05 INFO Executor: Fetching file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar with timestamp 1793380861980
+26/10/30 17:21:05 INFO Utils: /root/.ivy2/jars/org.apache.kafka_kafka-clients-3.4.1.jar has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.kafka_kafka-clients-3.4.1.jar
+26/10/30 17:21:05 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.kafka_kafka-clients-3.4.1.jar with timestamp 1793380861980
+26/10/30 17:21:06 INFO TransportClientFactory: Successfully created connection to c5c633a466ce/172.20.0.3:37885 after 170 ms (0 ms spent in bootstraps)
+26/10/30 17:21:06 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.kafka_kafka-clients-3.4.1.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp17104628599204336201.tmp
+26/10/30 17:21:06 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp17104628599204336201.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.kafka_kafka-clients-3.4.1.jar
+26/10/30 17:21:06 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.kafka_kafka-clients-3.4.1.jar to class loader default
+26/10/30 17:21:06 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:06 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp10584315639315938446.tmp
+26/10/30 17:21:06 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp10584315639315938446.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar
+26/10/30 17:21:06 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-runtime-3.3.4.jar to class loader default
+26/10/30 17:21:06 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar with timestamp 1793380861980
+26/10/30 17:21:06 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.xerial.snappy_snappy-java-1.1.10.5.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp6725861280433909301.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp6725861280433909301.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.xerial.snappy_snappy-java-1.1.10.5.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.xerial.snappy_snappy-java-1.1.10.5.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.hadoop_hadoop-client-api-3.3.4.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp13818896655731891372.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp13818896655731891372.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-api-3.3.4.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.hadoop_hadoop-client-api-3.3.4.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.lz4_lz4-java-1.8.0.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp747854951903550123.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp747854951903550123.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.lz4_lz4-java-1.8.0.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.lz4_lz4-java-1.8.0.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp15428014566995085425.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp15428014566995085425.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.5.7.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.slf4j_slf4j-api-2.0.7.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.slf4j_slf4j-api-2.0.7.jar to /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp16790694810630688124.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp16790694810630688124.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.slf4j_slf4j-api-2.0.7.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.slf4j_slf4j-api-2.0.7.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/com.google.code.findbugs_jsr305-3.0.0.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp2672210290801804174.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp2672210290801804174.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/com.google.code.findbugs_jsr305-3.0.0.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/com.google.code.findbugs_jsr305-3.0.0.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp3985259836939193745.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp3985259836939193745.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.spark_spark-sql-kafka-0-10_2.12-3.5.7.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/org.apache.commons_commons-pool2-2.11.1.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp1983508723211846819.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp1983508723211846819.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.commons_commons-pool2-2.11.1.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/org.apache.commons_commons-pool2-2.11.1.jar to class loader default
+26/10/30 17:21:07 INFO Executor: Fetching spark://c5c633a466ce:37885/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1793380861980
+26/10/30 17:21:07 INFO Utils: Fetching spark://c5c633a466ce:37885/jars/commons-logging_commons-logging-1.1.3.jar to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp16072178247949058752.tmp
+26/10/30 17:21:07 INFO Utils: /tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/fetchFileTemp16072178247949058752.tmp has been previously copied to
+/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/commons-logging_commons-logging-1.1.3.jar
+26/10/30 17:21:07 INFO Executor: Adding file:/tmp/spark-f0e2dc82-9728-4914-8b16-312e9d4cf576/userFiles-a6b80fe3-cfb3-4e26-8c6d-9b4b547f2891/commons-logging_commons-logging-1.1.3.jar to class loader default
+26/10/30 17:21:07 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35653.
+26/10/30 17:21:07 INFO NettyBlockTransferService: Server created on c5c633a466ce:35653
+26/10/30 17:21:07 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/10/30 17:21:07 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, c5c633a466ce, 35653, None)
+26/10/30 17:21:07 INFO BlockManagerMasterEndpoint: Registering block manager c5c633a466ce:35653 with 434.4 MiB RAM, BlockManagerId(driver, c5c633a466ce, 35653, None)
+26/10/30 17:21:07 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, c5c633a466ce, 35653, None)
+26/10/30 17:21:07 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, c5c633a466ce, 35653, None)
+26/10/30 17:21:15 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/10/30 17:21:15 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/10/30 17:21:16 WARN AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+26/10/30 17:21:16 WARN AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+RAPIDGO_PROGRESS {"id": "3739d5a1-c29a-4823-81e2-d7030415735f", "runId": "851967c7-f0af-4da5-a510-01c71d0064b1", "name": "auditoria", "timestamp": "2026-10-30T17:21:15.897Z", "batchId": 27, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "durationMs": {"latestOffset": 1236, "triggerExecution": 1487}, "stateOperators": [], "sources": [{"description": "KafkaV2[Subscribe[rapidgo.seguridad.repartidor.v1]]", "startOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "endOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "latestOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "metrics": {"avgOffsetsBehindLatest": "0.0", "maxOffsetsBehindLatest": "0", "minOffsetsBehindLatest": "0"}}], "sink": {"description": "org.apache.spark.sql.execution.streaming.ConsoleTable$@4db73b3b", "numOutputRows": -1}}
+RAPIDGO_PROGRESS {"id": "72a1045e-a8e6-4162-8693-9455dc2d3e95", "runId": "955f7869-50da-4633-ba71-7089eaa15f8e", "name": "validos", "timestamp": "2026-10-30T17:21:15.914Z", "batchId": 27, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "durationMs": {"latestOffset": 1236, "triggerExecution": 1472}, "stateOperators": [], "sources": [{"description": "KafkaV2[Subscribe[rapidgo.seguridad.repartidor.v1]]", "startOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "endOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "latestOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 78, "0": 0}}, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "metrics": {"avgOffsetsBehindLatest": "0.0", "maxOffsetsBehindLatest": "0", "minOffsetsBehindLatest": "0"}}], "sink": {"description": "org.apache.spark.sql.execution.streaming.ConsoleTable$@4db73b3b", "numOutputRows": -1}}
+26/10/30 17:26:10 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+26/10/30 17:26:10 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+26/10/30 17:26:11 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+26/10/30 17:26:11 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+26/10/30 17:26:11 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+26/10/30 17:26:11 WARN KafkaDataConsumer: KafkaDataConsumer is not running in UninterruptibleThread. It may hang when KafkaDataConsumer's methods are interrupted because of KAFKA-1894
+-------------------------------------------
+Batch: 27
+-------------------------------------------
+26/10/30 17:26:13 WARN HDFSBackedStateStoreProvider: The state for version 27 doesn't exist in loadedMaps. Reading snapshot file and delta files if needed...Note that this is normal for the first batch of starting query.
+26/10/30 17:26:13 WARN HDFSBackedStateStoreProvider: The state for version 27 doesn't exist in loadedMaps. Reading snapshot file and delta files if needed...Note that this is normal for the first batch of starting query.
+26/10/30 17:26:14 WARN HDFSBackedStateStoreProvider: The state for version 27 doesn't exist in loadedMaps. Reading snapshot file and delta files if needed...Note that this is normal for the first batch of starting query.
+-------------------------------------------
+Batch: 27
+-------------------------------------------
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------------+------+-------------------+
+|topic                          |partition|offset|kafka_timestamp        |key_original|value_original                                                                                                                                                                                                                                                                                      |motivos|evento                                                                                                                                           |valido|timestamp_utc      |
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------------+------+-------------------+
+|rapidgo.seguridad.repartidor.v1|1        |78    |2026-10-30 17:25:58.218|REP-001     |{"bateria_pct": 24.49, "desvio_metros": 526.38, "estado": "ENTREGADO", "event_id": "de957d33-5692-55bd-8f44-0e32fc0f4f2f", "gps": {"latitud": 4.732014, "longitud": -74.26875}, "pedido_id": "PED-001-000000", "repartidor_id": "REP-001", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 0} |[]     |{de957d33-5692-55bd-8f44-0e32fc0f4f2f, REP-001, PED-001-000000, 2026-10-30T14:03:00Z, ENTREGADO, {4.732014, -74.26875}, 0.0, 24.49, 526.38, NULL}|true  |2026-10-30 14:03:00|
+|rapidgo.seguridad.repartidor.v1|1        |79    |2026-10-30 17:25:58.223|REP-002     |{"bateria_pct": 89.22, "desvio_metros": 440.49, "estado": "PAUSADO", "event_id": "d63914ea-57ca-5554-a9c0-2e86a4bc2683", "gps": {"latitud": 4.731964, "longitud": -74.267975}, "pedido_id": "PED-002-000000", "repartidor_id": "REP-002", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 0}  |[]     |{d63914ea-57ca-5554-a9c0-2e86a4bc2683, REP-002, PED-002-000000, 2026-10-30T14:03:00Z, PAUSADO, {4.731964, -74.267975}, 0.0, 89.22, 440.49, NULL} |true  |2026-10-30 14:03:00|
+|rapidgo.seguridad.repartidor.v1|1        |80    |2026-10-30 17:25:58.229|REP-003     |{"bateria_pct": 23.27, "desvio_metros": 86.55, "estado": "EN_RUTA", "event_id": "84dbe57c-67ae-5ee1-aaad-246e7d083b43", "gps": {"latitud": 4.731959, "longitud": -74.264781}, "pedido_id": "PED-003-000000", "repartidor_id": "REP-003", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 7.96}|[]     |{84dbe57c-67ae-5ee1-aaad-246e7d083b43, REP-003, PED-003-000000, 2026-10-30T14:03:00Z, EN_RUTA, {4.731959, -74.264781}, 7.96, 23.27, 86.55, NULL} |true  |2026-10-30 14:03:00|
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------------+------+-------------------+
+
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------+------------------------------------+-------------+--------------+--------------------+---------+----------------------+-------------+-----------+-------------+------------+----------------+---------------+--------------+
+|topic                          |partition|offset|kafka_timestamp        |key_original|value_original                                                                                                                                                                                                                                                                                      |timestamp_utc      |event_id                            |repartidor_id|pedido_id     |timestamp           |estado   |gps                   |velocidad_kmh|bateria_pct|desvio_metros|incluye_kpi3|exceso_velocidad|bateria_critica|desvio_critico|
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------+------------------------------------+-------------+--------------+--------------------+---------+----------------------+-------------+-----------+-------------+------------+----------------+---------------+--------------+
+|rapidgo.seguridad.repartidor.v1|1        |78    |2026-10-30 17:25:58.218|REP-001     |{"bateria_pct": 24.49, "desvio_metros": 526.38, "estado": "ENTREGADO", "event_id": "de957d33-5692-55bd-8f44-0e32fc0f4f2f", "gps": {"latitud": 4.732014, "longitud": -74.26875}, "pedido_id": "PED-001-000000", "repartidor_id": "REP-001", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 0} |2026-10-30 14:03:00|de957d33-5692-55bd-8f44-0e32fc0f4f2f|REP-001      |PED-001-000000|2026-10-30T14:03:00Z|ENTREGADO|{4.732014, -74.26875} |0.0          |24.49      |526.38       |true        |false           |false          |true          |
+|rapidgo.seguridad.repartidor.v1|1        |79    |2026-10-30 17:25:58.223|REP-002     |{"bateria_pct": 89.22, "desvio_metros": 440.49, "estado": "PAUSADO", "event_id": "d63914ea-57ca-5554-a9c0-2e86a4bc2683", "gps": {"latitud": 4.731964, "longitud": -74.267975}, "pedido_id": "PED-002-000000", "repartidor_id": "REP-002", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 0}  |2026-10-30 14:03:00|d63914ea-57ca-5554-a9c0-2e86a4bc2683|REP-002      |PED-002-000000|2026-10-30T14:03:00Z|PAUSADO  |{4.731964, -74.267975}|0.0          |89.22      |440.49       |true        |false           |false          |true          |
+|rapidgo.seguridad.repartidor.v1|1        |80    |2026-10-30 17:25:58.229|REP-003     |{"bateria_pct": 23.27, "desvio_metros": 86.55, "estado": "EN_RUTA", "event_id": "84dbe57c-67ae-5ee1-aaad-246e7d083b43", "gps": {"latitud": 4.731959, "longitud": -74.264781}, "pedido_id": "PED-003-000000", "repartidor_id": "REP-003", "timestamp": "2026-10-30T14:03:00Z", "velocidad_kmh": 7.96}|2026-10-30 14:03:00|84dbe57c-67ae-5ee1-aaad-246e7d083b43|REP-003      |PED-003-000000|2026-10-30T14:03:00Z|EN_RUTA  |{4.731959, -74.264781}|7.96         |23.27      |86.55        |true        |false           |false          |false         |
++-------------------------------+---------+------+-----------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------+------------------------------------+-------------+--------------+--------------------+---------+----------------------+-------------+-----------+-------------+------------+----------------+---------------+--------------+
+
+26/10/30 17:26:16 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 5000 milliseconds, but spent 16771 milliseconds
+26/10/30 17:26:16 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 5000 milliseconds, but spent 16770 milliseconds
+RAPIDGO_PROGRESS {"id": "3739d5a1-c29a-4823-81e2-d7030415735f", "runId": "851967c7-f0af-4da5-a510-01c71d0064b1", "name": "auditoria", "timestamp": "2026-10-30T17:26:30.000Z", "batchId": 28, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "durationMs": {"latestOffset": 10, "triggerExecution": 10}, "stateOperators": [], "sources": [{"description": "KafkaV2[Subscribe[rapidgo.seguridad.repartidor.v1]]", "startOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "endOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "latestOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "metrics": {"avgOffsetsBehindLatest": "0.0", "maxOffsetsBehindLatest": "0", "minOffsetsBehindLatest": "0"}}], "sink": {"description": "org.apache.spark.sql.execution.streaming.ConsoleTable$@4db73b3b", "numOutputRows": 0}}
+RAPIDGO_PROGRESS {"id": "72a1045e-a8e6-4162-8693-9455dc2d3e95", "runId": "955f7869-50da-4633-ba71-7089eaa15f8e", "name": "validos", "timestamp": "2026-10-30T17:26:30.000Z", "batchId": 28, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "durationMs": {"latestOffset": 10, "triggerExecution": 10}, "stateOperators": [{"operatorName": "dedupe", "numRowsTotal": 81, "numRowsUpdated": 0, "allUpdatesTimeMs": 409, "numRowsRemoved": 0, "allRemovalsTimeMs": 1, "commitTimeMs": 448, "memoryUsedBytes": 23800, "numRowsDroppedByWatermark": 0, "numShufflePartitions": 3, "numStateStoreInstances": 3, "customMetrics": {"loadedMapCacheHitCount": 0, "loadedMapCacheMissCount": 3, "numDroppedDuplicateRows": 0, "stateOnCurrentVersionSizeBytes": 19064}}], "sources": [{"description": "KafkaV2[Subscribe[rapidgo.seguridad.repartidor.v1]]", "startOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "endOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "latestOffset": {"rapidgo.seguridad.repartidor.v1": {"2": 0, "1": 81, "0": 0}}, "numInputRows": 0, "inputRowsPerSecond": 0.0, "processedRowsPerSecond": 0.0, "metrics": {"avgOffsetsBehindLatest": "0.0", "maxOffsetsBehindLatest": "0", "minOffsetsBehindLatest": "0"}}], "sink": {"description": "org.apache.spark.sql.execution.streaming.ConsoleTable$@4db73b3b", "numOutputRows": 0}}
