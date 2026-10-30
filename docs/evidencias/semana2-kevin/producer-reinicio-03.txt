@@ -1,0 +1,6 @@
+{"event_id": "456df75b-b4a6-509c-8df4-2dfbb54c634d", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 72}
+{"event_id": "c0437369-2d69-57da-be36-fbe9f4081b88", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 73}
+{"event_id": "3b133789-e0d4-5fbd-a7e4-6c9893f2f738", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 74}
+{"event_id": "4717b0bb-21ce-58d1-aea6-ceafa986e272", "key": "REP-001", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 75}
+{"event_id": "c75d166a-a185-52da-b64b-b694564e72e5", "key": "REP-002", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 76}
+{"event_id": "3cdb6951-9725-5ffc-804f-c9d89b3b1bee", "key": "REP-003", "topic": "rapidgo.seguridad.repartidor.v1", "partition": 1, "offset": 77}
