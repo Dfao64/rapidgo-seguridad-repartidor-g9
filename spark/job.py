@@ -13,7 +13,7 @@ def iniciar_pipeline():
     df_kafka = spark.readStream \
         .format("kafka") \
         .option("kafka.bootstrap.servers", "localhost:9092") \
-        .option("subscribe", "eventos_repartidor") \
+        .option("subscribe", "rapidgo.seguridad.repartidor.v1") \
         .load()
 
     # 3. Guardar en capa Raw (sin transformar)
