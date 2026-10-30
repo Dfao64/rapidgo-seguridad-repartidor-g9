@@ -1,0 +1,2 @@
+NAME                                   IMAGE                COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+rapidgo-daniel-producer-test-kafka-1   apache/kafka:4.0.0   "/__cacert_entrypoin…"   kafka     2 minutes ago   Up 2 minutes (healthy)   127.0.0.1:19092->9092/tcp
