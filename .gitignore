@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Data Lake: no versionar datos generados
+datalake/raw/*
+datalake/processed/*
+datalake/curated/*
+datalake/checkpoints/*
+!datalake/raw/.gitkeep
+!datalake/processed/.gitkeep
+!datalake/curated/.gitkeep
+!datalake/checkpoints/.gitkeep
