@@ -86,3 +86,24 @@ def test_datos_invalidos_se_rechazan(module, monkeypatch):
     ]))
     with pytest.raises(ValueError, match="eventos inválidos"):
         module.validar_calidad()
+
+
+@pytest.mark.parametrize("field,value", [
+    ("velocidad_kmh", "no-numero"),
+    ("velocidad_kmh", float("inf")),
+    ("bateria_pct", float("nan")),
+    ("gps", {"latitud": 91, "longitud": -74}),
+])
+def test_valores_fuera_de_tipo_o_rango_quedan_en_cuarentena(module, monkeypatch, field, value):
+    sample = Path(__file__).resolve().parents[1] / "samples" / "evento_repartidor.json"
+    event = json.loads(sample.read_text(encoding="utf-8"))
+    event["event_id"] = f"invalid-{field}"
+    event[field] = value
+    target = module.ROOT / "processed" / "parte.parquet"
+    pd.DataFrame([event]).to_parquet(target, index=False)
+    context = {"ds_nodash": "20261105", "run_id": "manual__invalid"}
+    with pytest.raises(ValueError, match="eventos inválidos"):
+        module.validar_calidad(**context)
+    rejected = list(module.REPORTS.rglob("rechazados.jsonl"))
+    assert len(rejected) == 1
+    assert "invalido" in rejected[0].read_text(encoding="utf-8")
