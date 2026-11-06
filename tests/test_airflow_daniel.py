@@ -95,11 +95,9 @@ def test_datos_invalidos_se_rechazan(module, monkeypatch):
     ("gps", {"latitud": 91, "longitud": -74}),
 ])
 def test_valores_fuera_de_tipo_o_rango_quedan_en_cuarentena(module, monkeypatch, field, value):
-    event = {
-        "event_id": "e1", "repartidor_id": "r1", "pedido_id": "p1",
-        "timestamp": "2026-11-05T00:00:00Z", "gps": {"latitud": 4, "longitud": -74},
-        "estado": "EN_RUTA", "velocidad_kmh": 20.0, "bateria_pct": 50.0,
-    }
+    sample = Path(__file__).resolve().parents[1] / "samples" / "evento_repartidor.json"
+    event = json.loads(sample.read_text(encoding="utf-8"))
+    event["event_id"] = f"invalid-{field}"
     event[field] = value
     target = module.ROOT / "processed" / "parte.parquet"
     pd.DataFrame([event]).to_parquet(target, index=False)
