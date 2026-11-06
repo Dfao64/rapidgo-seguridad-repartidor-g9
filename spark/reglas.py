@@ -27,7 +27,8 @@ def es_desvio_critico(desvio_metros):
 
 
 def _es_numero(x):
-    return isinstance(x, (int, float)) and not isinstance(x, bool)
+    return (isinstance(x, (int, float)) and not isinstance(x, bool)
+            and math.isfinite(x))
 
 
 def _timestamp_valido(ts):
