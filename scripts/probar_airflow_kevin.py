@@ -16,7 +16,7 @@ project = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('rapidgo_integration', project / 'airflow/dags/rapidgo_seguridad.py')
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
-evidence = Path(os.environ.get('RAPIDGO_EVIDENCE_ROOT', project / 'docs/evidencias/semana3-kevin'))
+evidence = Path(os.environ.get('RAPIDGO_EVIDENCE_ROOT', project / 'docs/evidencias/semana3-airflow-final'))
 evidence.mkdir(parents=True, exist_ok=True)
 with TemporaryDirectory(prefix='rapidgo-calidad-') as tmp:
     mod.ROOT = Path(tmp) / 'datalake'
@@ -29,13 +29,14 @@ with TemporaryDirectory(prefix='rapidgo-calidad-') as tmp:
     with create_session() as session:
         tasks = run.get_task_instances(session=session)
         states = {ti.task_id: {'state': ti.state, 'try_number': ti.try_number} for ti in tasks}
-        assert len(tasks) == 3 and all(ti.state == 'success' for ti in tasks), states
+        assert len(tasks) == 5 and all(ti.state == 'success' for ti in tasks), states
         quality = next(ti for ti in tasks if ti.task_id == 'validar_calidad')
         assert quality.try_number >= 2, states
         metadata = {ti.task_id: XCom.get_one(run_id=run.run_id, dag_id=run.dag_id,
                     task_id=ti.task_id, key='return_value', session=session) for ti in tasks}
         assert metadata['validar_calidad']['invalidos'] == 1
         assert metadata['agregar_datos']['eventos'] == 1
+        assert metadata['auditar_salida']['estado'] == 'verificado'
         for name, value in metadata.items():
             assert len(json.dumps(value)) < 2000, name
         result = {'dag_id': run.dag_id, 'run_id': run.run_id, 'state': run.state,

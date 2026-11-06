@@ -1,24 +1,22 @@
 # Checkpoint Semana 3
 
 **RapidGo 360 · Grupo 9 · Variante 2: Seguridad del repartidor**  
-**Responsable del componente:** Daniel Abello · **Fecha:** 5 de noviembre de 2026
+**Responsable:** Daniel Abello · **Fecha:** 5 de noviembre de 2026
 
 ## Qué quedó funcionando
 
-El DAG `rapidgo_seguridad_semanal` ejecuta en secuencia `validar_calidad → agregar_datos → generar_reporte`. Valida el contrato del evento, separa los registros rechazados en JSONL, crea un snapshot Parquet de los válidos y genera agregados y un reporte JSON. El intercambio entre tareas usa metadatos pequeños en XCom.
+El DAG `rapidgo_seguridad_semanal` completa cinco etapas: `verificar_fuente → validar_calidad → agregar_datos → generar_reporte → auditar_salida`. Comprueba el esquema de cada Parquet; separa inválidos en JSONL; crea un snapshot de válidos; genera agregados CSV y reporte JSON; y contrasta sus conteos. XCom transporta metadatos pequeños, no los registros.
 
-## Evidencia de ejecución
+## Evidencia y recuperación
 
-Con Airflow 2.10.5, la prueba real `DAG.test` terminó con las tres tareas en `success`. En la prueba controlada se procesaron 2 eventos: 1 inválido y 1 válido; el evento inválido quedó en cuarentena y 1 repartidor llegó a los indicadores. `validar_calidad` falló en el primer intento (`UP_FOR_RETRY`) y pasó en el segundo. En la verificación guiada con Docker se observaron también las tres tareas exitosas y la recuperación del reintento. En una prueba separada Spark generó Parquet y Airflow procesó 1 evento válido. Estas pruebas no demuestran el flujo completo de Kafka.
+La prueba de Airflow 2.10.5 real (`DAG.test`) verifica las cinco tareas, usando un Parquet sintético de dos eventos: uno inválido (batería 101) y uno válido. La validación rechaza el primero y la agregación usa solo el segundo. Se configura un fallo transitorio: el primer intento de `validar_calidad` queda `UP_FOR_RETRY`; el reintento y las tareas siguientes terminan correctamente. `auditar_salida` verifica que los conteos del CSV y el JSON coincidan. La integración ampliada se ejecuta en GitHub Actions y conserva log, JSON, rechazos y reporte como artefacto.
 
-La suite del repositorio registró **99 pruebas aprobadas** y el workflow de GitHub Actions **#41 terminó en verde**, incluidas sintaxis, pruebas y validación de Docker Compose. Las evidencias de logs, datos, reporte y capturas están en [`docs/evidencias/semana3-kevin/`](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/tree/main/docs/evidencias/semana3-kevin). La captura de trabajo se integró mediante los PR #34, #38 y #39; el PR #39 recibió aprobación antes del merge.
+La ejecución Docker capturada en el PR #39 corresponde a la versión anterior de tres tareas; no se presenta como evidencia de la versión de cinco tareas. La nueva comprobación usa Airflow real en CI como alternativa ejecutable al Docker local no disponible en este entorno.
 
-## Decisión técnica y problema resuelto
+## Decisión y pendientes de liberación
 
-La agregación lee el snapshot validado de cada ejecución, no el directorio Processed completo; así los datos rechazados no alimentan los KPIs. XCom transporta conteos, estado y rutas, no DataFrames. Para probar resiliencia se provocó un `OSError` temporal en el primer intento; Airflow marcó `UP_FOR_RETRY` y la tarea concluyó correctamente al reintentarse. Un evento sintético con batería `101` fue rechazado con motivo `bateria_pct_invalido`.
+El ADR-003 separa inspección de esquema, calidad, agregación, reporte y auditoría. El snapshot por ejecución evita incluir rechazados en los KPIs; se mantienen dos reintentos de 30 segundos para fallos transitorios. El procesamiento continúa siendo batch, no integra el flujo completo Kafka → Spark → Airflow.
 
-## Pendientes frente a la guía
+El release/tag `v0.3.0-orchestration` se publica después de que este PR sea revisado y fusionado. No se marca el Issue #16 como cerrado antes de ese paso.
 
-El DAG implementa **3 tareas**, mientras la guía de Semana 3 pide mínimo **5**. No se encontró ADR-003 ni el release/tag `v0.3.0-orchestration`, y el Issue #16 sigue abierto. Por tanto, el flujo de 3 etapas y su resiliencia están probados, pero estos elementos deben completarse antes de declarar cerrado el gate semanal.
-
-**Referencias:** [Issue #16](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/issues/16) · [PR #34](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/pull/34) · [PR #38](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/pull/38) · [PR #39](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/pull/39) · [GitHub Actions #41](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/actions/runs/42158646647)
+**Referencias:** [Issue #16](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/issues/16) · [PR de implementación](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/pull/40) · [Acciones y artefacto de integración](https://github.com/Dfao64/rapidgo-seguridad-repartidor-g9/actions)

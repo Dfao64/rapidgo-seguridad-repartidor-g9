@@ -80,10 +80,56 @@ def _fallo_temporal(context):
         raise OSError("Fallo temporal controlado de lectura")
 
 
+def verificar_fuente(**context):
+    """Descubre Parquet y valida el esquema de cada archivo antes de leer filas."""
+    from pyarrow.parquet import read_schema
+
+    files = sorted((ROOT / "processed").rglob("*.parquet"))
+    if not files:
+        _fail("No hay Parquet en datalake/processed; ejecutar Spark primero")
+    for file in files:
+        try:
+            columns = set(read_schema(file).names)
+        except Exception as exc:
+            LOG.exception("Error de lectura Parquet: %s", file)
+            raise OSError(f"Error de lectura Parquet: {file}") from exc
+        missing = REQUIRED - columns
+        if missing:
+            _fail(f"Columnas faltantes en {file}: {sorted(missing)}")
+
+    directory = _directory(context)
+    manifest = directory / "manifest_fuentes.json"
+    payload = {"archivos": [str(file) for file in files],
+               "bytes_total": sum(file.stat().st_size for file in files)}
+    manifest.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    LOG.info("Fuente verificada: archivos=%s bytes=%s manifest=%s",
+             len(files), payload["bytes_total"], manifest)
+    return {"archivos": len(files), "bytes_total": payload["bytes_total"],
+            "ruta_manifest": str(manifest)}
+
+
+def _source_files(context):
+    """Lee las rutas verificadas; permite invocación directa en pruebas unitarias."""
+    ti = context.get("ti")
+    if ti is not None and hasattr(ti, "xcom_pull"):
+        meta = ti.xcom_pull(task_ids="verificar_fuente")
+        if not isinstance(meta, dict) or not meta.get("ruta_manifest"):
+            _fail("Calidad: faltan metadatos XCom de verificar_fuente")
+        try:
+            payload = json.loads(Path(meta["ruta_manifest"]).read_text(encoding="utf-8"))
+            files = [Path(value) for value in payload["archivos"]]
+        except (OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            raise ValueError("Calidad: manifiesto de fuentes ilegible") from exc
+        if len(files) != meta.get("archivos") or not files:
+            _fail("Calidad: el manifiesto no coincide con el conteo de fuentes")
+        return files
+    return sorted((ROOT / "processed").rglob("*.parquet"))
+
+
 def validar_calidad(**context):
     import pandas as pd
     _fallo_temporal(context)
-    files = sorted((ROOT / "processed").rglob("*.parquet"))
+    files = _source_files(context)
     if not files:
         _fail("No hay Parquet en datalake/processed; ejecutar Spark primero")
     frames = []
@@ -160,6 +206,33 @@ def generar_reporte(**context):
     return {"ruta": str(out), "estado": meta["estado"], "eventos": meta["eventos"]}
 
 
+def auditar_salida(**context):
+    """Comprueba que el reporte JSON y el agregado describan el mismo resultado."""
+    import pandas as pd
+
+    report_meta = context["ti"].xcom_pull(task_ids="generar_reporte")
+    aggregate_meta = context["ti"].xcom_pull(task_ids="agregar_datos")
+    if not isinstance(report_meta, dict) or not report_meta.get("ruta"):
+        _fail("Auditoría: faltan metadatos XCom de generar_reporte")
+    if not isinstance(aggregate_meta, dict) or not aggregate_meta.get("ruta"):
+        _fail("Auditoría: faltan metadatos XCom de agregar_datos")
+    report_path = Path(report_meta["ruta"])
+    aggregate_path = Path(aggregate_meta["ruta"])
+    if not report_path.is_file() or not aggregate_path.is_file():
+        _fail("Auditoría: no se encontraron los artefactos de salida")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    summary = pd.read_csv(aggregate_path)
+    total = int(summary["eventos"].sum()) if not summary.empty else 0
+    riders = int(len(summary))
+    expected = (int(report.get("eventos", -1)), int(report.get("repartidores", -1)))
+    if (total, riders) != expected:
+        _fail(f"Auditoría: conteos inconsistentes; CSV={(total, riders)} JSON={expected}")
+    result = {"estado": "verificado", "eventos": total, "repartidores": riders,
+              "reporte": str(report_path), "agregado": str(aggregate_path)}
+    LOG.info("Salida auditada: eventos=%s repartidores=%s", total, riders)
+    return result
+
+
 with DAG(
     dag_id="rapidgo_seguridad_semanal",
     description="Validación, agregación y reporte del Data Lake de RapidGo",
@@ -169,7 +242,9 @@ with DAG(
                   "execution_timeout": timedelta(minutes=5), "on_failure_callback": fallo_definitivo},
     tags=["rapidgo", "semana3", "seguridad"],
 ) as dag:
+    fuente = PythonOperator(task_id="verificar_fuente", python_callable=verificar_fuente)
     calidad = PythonOperator(task_id="validar_calidad", python_callable=validar_calidad)
     agregacion = PythonOperator(task_id="agregar_datos", python_callable=agregar_datos)
     reporte = PythonOperator(task_id="generar_reporte", python_callable=generar_reporte)
-    calidad >> agregacion >> reporte
+    auditoria = PythonOperator(task_id="auditar_salida", python_callable=auditar_salida)
+    fuente >> calidad >> agregacion >> reporte >> auditoria
