@@ -1,0 +1,47 @@
+{
+  "dag_id": "rapidgo_seguridad_semanal",
+  "run_id": "manual__2026-11-06T02:43:54.855824+00:00",
+  "state": "success",
+  "modo": "DAG.test con Airflow real; no Docker ni scheduler",
+  "tasks": {
+    "validar_calidad": {
+      "state": "success",
+      "try_number": 2
+    },
+    "agregar_datos": {
+      "state": "success",
+      "try_number": 1
+    },
+    "generar_reporte": {
+      "state": "success",
+      "try_number": 1
+    }
+  },
+  "xcom": {
+    "validar_calidad": {
+      "archivos": 1,
+      "procesados": 2,
+      "invalidos": 1,
+      "eventos": 1,
+      "ruta_validos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet",
+      "ruta_rechazos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl",
+      "estado": "con_rechazos"
+    },
+    "agregar_datos": {
+      "archivos": 1,
+      "procesados": 2,
+      "invalidos": 1,
+      "eventos": 1,
+      "ruta_validos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet",
+      "ruta_rechazos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl",
+      "estado": "con_rechazos",
+      "ruta": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/agregados.csv",
+      "repartidores": 1
+    },
+    "generar_reporte": {
+      "ruta": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/reporte.json",
+      "estado": "con_rechazos",
+      "eventos": 1
+    }
+  }
+}
