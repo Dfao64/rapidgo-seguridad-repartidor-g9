@@ -41,6 +41,7 @@ def test_rechazos_no_alimentan_indicadores(module):
     df.to_parquet(module.ROOT / 'processed' / 'parte.parquet', index=False)
     values = {}
     ctx = dict(ti=SimpleNamespace(xcom_pull=lambda task_ids: values[task_ids]), run_id='prueba', ds='2026-11-05')
+    values['verificar_fuente'] = module.verificar_fuente(**ctx)
     values['validar_calidad'] = module.validar_calidad(**ctx)
     meta = values['validar_calidad']
     assert (meta['procesados'], meta['invalidos'], meta['eventos']) == (4, 3, 1)
@@ -52,7 +53,9 @@ def test_rechazos_no_alimentan_indicadores(module):
     rejects = pd.read_json(meta['ruta_rechazos'], lines=True)
     assert len(rejects) == 3
     assert rejects.motivos.str.contains('duplicado').sum() == 2
-    assert module.generar_reporte(**ctx)['eventos'] == 1
+    values['generar_reporte'] = module.generar_reporte(**ctx)
+    assert values['generar_reporte']['eventos'] == 1
+    assert module.auditar_salida(**ctx)['estado'] == 'verificado'
 
 
 def test_columnas_por_archivo(module):

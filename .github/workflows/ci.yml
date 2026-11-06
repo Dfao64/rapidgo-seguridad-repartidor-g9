@@ -32,3 +32,48 @@ jobs:
 
       - name: Validar Docker Compose
         run: docker compose config --quiet
+
+  airflow_integration:
+    name: Integración DAG con Airflow 2.10.5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Instalar Airflow y dependencias de Parquet
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "apache-airflow==2.10.5" \
+            --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.5/constraints-3.12.txt"
+          python -m pip install pandas pyarrow
+
+      - name: Inicializar Airflow aislado
+        run: |
+          mkdir -p "$RUNNER_TEMP/airflow-home"
+          export AIRFLOW_HOME="$RUNNER_TEMP/airflow-home"
+          export AIRFLOW__CORE__LOAD_EXAMPLES=false
+          export AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+          echo "AIRFLOW_HOME=$AIRFLOW_HOME" >> "$GITHUB_ENV"
+          echo "AIRFLOW__CORE__LOAD_EXAMPLES=$AIRFLOW__CORE__LOAD_EXAMPLES" >> "$GITHUB_ENV"
+          echo "AIRFLOW__CORE__EXECUTOR=$AIRFLOW__CORE__EXECUTOR" >> "$GITHUB_ENV"
+          airflow db migrate
+
+      - name: Ejecutar DAG real con fallo y recuperación
+        env:
+          RAPIDGO_EVIDENCE_ROOT: docs/evidencias/semana3-airflow-final
+        run: |
+          mkdir -p "$RAPIDGO_EVIDENCE_ROOT"
+          python scripts/probar_airflow_kevin.py 2>&1 | tee "$RAPIDGO_EVIDENCE_ROOT/airflow-integracion.log"
+
+      - name: Publicar evidencia de integración
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: airflow-integracion-${{ github.run_number }}
+          path: docs/evidencias/semana3-airflow-final/
+          if-no-files-found: warn

@@ -10,11 +10,16 @@ import pytest
 
 
 class FakeDAG:
+    active = None
     def __init__(self, **kwargs):
         self.kwargs = kwargs
+        self.tasks = {}
+        self.edges = []
     def __enter__(self):
+        FakeDAG.active = self
         return self
     def __exit__(self, *_):
+        FakeDAG.active = None
         return False
 
 
@@ -22,7 +27,11 @@ class FakeOperator:
     def __init__(self, task_id, python_callable):
         self.task_id = task_id
         self.python_callable = python_callable
+        self.downstream_task_ids = set()
+        FakeDAG.active.tasks[task_id] = self
     def __rshift__(self, other):
+        self.downstream_task_ids.add(other.task_id)
+        FakeDAG.active.edges.append((self.task_id, other.task_id))
         return other
 
 
@@ -61,6 +70,7 @@ def test_flujo_calidad_agregacion_reporte(module, monkeypatch):
             return self.values[task_ids]
     ti = TI()
     ctx = {"ti": ti, "ds_nodash": "20261105", "ds": "2026-11-05"}
+    ti.values["verificar_fuente"] = module.verificar_fuente(**ctx)
     ti.values["validar_calidad"] = module.validar_calidad(**ctx)
     assert ti.values["validar_calidad"]["eventos"] == 2
     assert ti.values["validar_calidad"]["invalidos"] == 0
@@ -69,9 +79,25 @@ def test_flujo_calidad_agregacion_reporte(module, monkeypatch):
     assert csv.loc[0, "velocidad_promedio"] == 52
     assert csv.loc[0, "eventos_bateria_critica"] == 1
     assert csv.loc[0, "eventos_exceso_velocidad"] == 1
-    report = json.loads(Path(module.generar_reporte(**ctx)["ruta"]).read_text(encoding="utf-8"))
+    ti.values["generar_reporte"] = module.generar_reporte(**ctx)
+    report = json.loads(Path(ti.values["generar_reporte"]["ruta"]).read_text(encoding="utf-8"))
     assert report["eventos"] == 2
     assert report["repartidores"] == 1
+    audit = module.auditar_salida(**ctx)
+    assert audit["estado"] == "verificado"
+    assert audit["eventos"] == 2
+
+
+def test_dag_tiene_cinco_tareas_ordenadas(module):
+    assert list(module.dag.tasks) == [
+        "verificar_fuente", "validar_calidad", "agregar_datos", "generar_reporte", "auditar_salida"
+    ]
+    assert module.dag.edges == [
+        ("verificar_fuente", "validar_calidad"),
+        ("validar_calidad", "agregar_datos"),
+        ("agregar_datos", "generar_reporte"),
+        ("generar_reporte", "auditar_salida"),
+    ]
 
 
 def test_sin_parquet_falla_con_mensaje(module):

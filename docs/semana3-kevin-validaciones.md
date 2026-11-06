@@ -3,7 +3,7 @@
 Base revisada: PR #34 aprobado por Deimer3 e integrado en main, commit `f77bb397dc4104e62376748246f6f90d643bad88`.
 
 ## Calidad e indicadores
-Se conserva el DAG `rapidgo_seguridad_semanal` y sus tres tareas: validar_calidad → agregar_datos → generar_reporte.
+Se conserva el DAG `rapidgo_seguridad_semanal`. La versión final amplía el flujo a cinco tareas: verificar_fuente → validar_calidad → agregar_datos → generar_reporte → auditar_salida. La evidencia previa de tres tareas se mantiene como registro histórico de la primera integración.
 Cada Parquet debe tener event_id, repartidor_id, pedido_id, timestamp, gps, velocidad_kmh, bateria_pct y estado. Se comprueba el esquema de **cada archivo**, evitando ocultar columnas ausentes al concatenar.
 
 Los identificadores deben ser cadenas no vacías. Timestamp debe ser ISO 8601 con hora y zona (Z u offset); se valida también el calendario. GPS usa el struct del contrato: gps.latitud [-90,90] y gps.longitud [-180,180]. Velocidad debe ser finita y >=0; batería finita y entre 0 y 100. No se aceptan booleanos como números. Estados permitidos: EN_RUTA, ENTREGADO, PAUSADO.
@@ -13,7 +13,7 @@ Todas las apariciones de event_id duplicado se rechazan para no elegir arbitrari
 Se escribe un snapshot `validos.parquet` por run_id (directorio hash). La agregación lee **solo ese snapshot**, nunca relee Processed: los registros rechazados no alimentan indicadores y las ejecuciones del mismo día no comparten archivos. Los rechazos y snapshots contienen datos del lote: conservarlos bajo los mismos controles de acceso y retención que el Data Lake. El hash identifica la ejecución, no anonimiza los eventos.
 
 ## XCom
-Solo retorna diccionarios pequeños: conteos, rutas y estado. El dataset queda en disco compartido. `validar_calidad`: archivos, procesados, invalidos, eventos válidos, ruta_validos, ruta_rechazos, estado. `agregar_datos` añade ruta del CSV y repartidores. `generar_reporte` retorna ruta del JSON, estado y conteo. No se transmiten DataFrames ni listas de eventos por XCom.
+Solo retorna diccionarios pequeños: conteos, rutas y estado. El dataset queda en disco compartido. `verificar_fuente` retorna conteo, bytes y ruta del manifiesto; las rutas de archivos se guardan en disco, no en XCom. `validar_calidad`: archivos, procesados, invalidos, eventos válidos, ruta_validos, ruta_rechazos, estado. `agregar_datos` añade ruta del CSV y repartidores. `generar_reporte` retorna ruta del JSON, estado y conteo. `auditar_salida` compara conteos del CSV y JSON y retorna estado y métricas pequeñas. No se transmiten DataFrames ni listas de eventos por XCom.
 
 ## Reintentos y fallos
 Todas las tareas heredan 2 reintentos (hasta 3 intentos), intervalo fijo de 30 segundos y execution_timeout de 5 minutos **por intento**. Fallo definitivo invoca callback con DAG, tarea, run y excepción en logs; dependientes usan all_success y quedan bloqueadas. No se envían notificaciones externas.
@@ -37,7 +37,7 @@ export AIRFLOW__CORE__EXECUTOR=SequentialExecutor
 airflow db migrate
 python scripts/probar_airflow_kevin.py > docs/evidencias/semana3-kevin/airflow-integracion.log 2>&1
 ```
-El script usa datos sintéticos y directorios temporales; prueba las tres tareas con `DAG.test`, comprueba reintento real, estados y XCom, y guarda JSON y logs. No sustituye la prueba del scheduler ni la interfaz Docker.
+El script usa datos sintéticos y directorios temporales; prueba las cinco tareas con `DAG.test`, comprueba reintento real, estados y XCom, y guarda JSON y logs. La CI ejecuta esta integración con Airflow 2.10.5 y conserva los artefactos. No sustituye una captura de la interfaz del scheduler Docker.
 
 ## Verificación Docker y capturas
 Desde la raíz, con Docker Desktop activo y Parquet real de Spark:
@@ -47,7 +47,9 @@ mkdir -p airflow/reports
 docker compose -f docker-compose.yml -f docker-compose.airflow.yml up -d
 docker compose -f docker-compose.yml -f docker-compose.airflow.yml logs -f airflow
 ```
-Abrir http://localhost:8080 con las credenciales de standalone de los logs. Localizar el DAG, activarlo y disparar una ejecución con la configuración de fallo temporal. Capturar Graph/Grid con tres tareas, estado up_for_retry y log del primer intento, segundo intento exitoso, XCom return_value de cada tarea y JSON de reporte. Para probar rechazos agregar un evento con batería 101 a un Parquet de prueba aislado y comprobar invalidos y rechazados.jsonl. Nunca modificar el Data Lake real para una demostración.
+Abrir http://localhost:8080 con las credenciales de standalone de los logs. Localizar el DAG, activarlo y disparar una ejecución con la configuración de fallo temporal. Capturar Graph/Grid con cinco tareas, estado up_for_retry y log del primer intento, segundo intento exitoso, XCom return_value de cada tarea y JSON de reporte. Para probar rechazos agregar un evento con batería 101 a un Parquet de prueba aislado y comprobar invalidos y rechazados.jsonl. Nunca modificar el Data Lake real para una demostración.
+
+Las capturas ya archivadas en PR #39 corresponden a la versión anterior de tres tareas; no deben presentarse como evidencia visual de esta secuencia de cinco tareas. La integración final de Airflow real se verifica por el job `airflow_integration` y queda como artefacto del workflow. La UI Docker de cinco tareas queda pendiente si se requiere una captura adicional del scheduler.
 
 ## Límites
 Pipeline batch académico: lee todos los Parquet en memoria, no incremental; requiere que Spark haya terminado de escribir el lote. No se implementa coordinación transaccional con Spark. SQLite y SequentialExecutor son para demostración. Los resultados y estados realmente comprobados se registran en `docs/evidencias/semana3-kevin/README.md`; no se presentan capturas simuladas.
