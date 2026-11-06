@@ -1,6 +1,7 @@
 """Reglas de negocio y validación del evento de seguridad del repartidor.
 
 """
+import math
 from datetime import datetime
 
 UMBRAL_VELOCIDAD_KMH = 60
