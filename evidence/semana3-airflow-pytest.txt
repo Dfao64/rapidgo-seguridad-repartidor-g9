@@ -1,5 +1,5 @@
 Comandos: pytest -q; pytest -q tests/test_airflow_daniel.py
-Fecha UTC: 2026-11-06T03:28:54Z
+Fecha UTC: 2026-11-06T03:32:39Z
 Base main: 356f29e3f25050decf3714a718c58813baa7ff9c
 
 == Suite completa ==
@@ -14,7 +14,7 @@ Base main: 356f29e3f25050decf3714a718c58813baa7ff9c
     from _pytest.python import CallSpec2
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-98 passed, 5 skipped, 1 warning in 0.74s
+98 passed, 5 skipped, 1 warning in 0.70s
 
 == Suite Airflow ==
 .......                                                                  [100%]
@@ -27,4 +27,4 @@ Base main: 356f29e3f25050decf3714a718c58813baa7ff9c
     from _pytest.python import CallSpec2
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-7 passed, 1 warning in 0.44s
+7 passed, 1 warning in 0.35s
