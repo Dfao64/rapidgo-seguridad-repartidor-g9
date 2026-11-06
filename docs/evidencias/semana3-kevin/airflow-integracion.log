@@ -1,0 +1,222 @@
+[2026-11-05T21:43:54.947-0500] {dag.py:4435} INFO - dagrun id: rapidgo_seguridad_semanal
+[2026-11-05T21:43:55.061-0500] {dag.py:4451} INFO - created dagrun <DagRun rapidgo_seguridad_semanal @ 2026-11-06 02:43:54.855824+00:00: manual__2026-11-06T02:43:54.855824+00:00, state:running, queued_at: None. externally triggered: False>
+[2026-11-05T21:43:55.092-0500] {dag.py:4396} INFO - [DAG TEST] starting task_id=validar_calidad map_index=-1
+[2026-11-05T21:43:55.092-0500] {dag.py:4399} INFO - [DAG TEST] running task <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [scheduled]>
+[2026-11-05 21:43:55,161] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='validar_calidad' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:43:55.161-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='validar_calidad' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:43:55.163-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2026-11-05T21:43:55.177-0500] {rapidgo_seguridad.py:79} WARNING - Fallo temporal controlado: intento 1; Airflow debe reintentar
+[2026-11-05 21:43:55,177] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 763, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 85, in validar_calidad
+    _fallo_temporal(context)
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 80, in _fallo_temporal
+    raise OSError("Fallo temporal controlado de lectura")
+OSError: Fallo temporal controlado de lectura
+[2026-11-05T21:43:55.177-0500] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 763, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 85, in validar_calidad
+    _fallo_temporal(context)
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 80, in _fallo_temporal
+    raise OSError("Fallo temporal controlado de lectura")
+OSError: Fallo temporal controlado de lectura
+[2026-11-05T21:43:55.183-0500] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=rapidgo_seguridad_semanal, task_id=validar_calidad, run_id=manual__2026-11-06T02:43:54.855824+00:00, execution_date=20261106T024354, start_date=, end_date=20261106T024355
+[2026-11-05T21:43:55.199-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-11-05T21:43:55.200-0500] {dag.py:3090} ERROR - Task failed; ti=<TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>
+Traceback (most recent call last):
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/dag.py", line 3083, in test
+    _run_task(
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/dag.py", line 4400, in _run_task
+    ti._run_raw_task(session=session, raise_on_defer=inline_trigger, mark_success=mark_success)
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 763, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/rapidgo-airflow/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 85, in validar_calidad
+    _fallo_temporal(context)
+  File "/workspace/scratch/b69d90698751/rapidgo/airflow/dags/rapidgo_seguridad.py", line 80, in _fallo_temporal
+    raise OSError("Fallo temporal controlado de lectura")
+OSError: Fallo temporal controlado de lectura
+[2026-11-05T21:43:55.220-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:43:56.241-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:43:57.263-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:43:58.274-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:43:59.289-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:00.312-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:01.335-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:02.351-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:03.365-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:04.396-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:05.407-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:06.420-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:07.468-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:08.480-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:09.492-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:10.504-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:11.519-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:12.530-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:13.543-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:14.556-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:15.570-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:16.581-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:17.594-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:18.606-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:19.617-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:20.628-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:21.640-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:22.655-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:23.667-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:24.680-0500] {dag.py:3061} WARNING - No tasks to run. unrunnable tasks: {<TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [None]>, <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [up_for_retry]>}
+[2026-11-05T21:44:25.692-0500] {dag.py:4396} INFO - [DAG TEST] starting task_id=validar_calidad map_index=-1
+[2026-11-05T21:44:25.692-0500] {dag.py:4399} INFO - [DAG TEST] running task <TaskInstance: rapidgo_seguridad_semanal.validar_calidad manual__2026-11-06T02:43:54.855824+00:00 [scheduled]>
+[2026-11-05 21:44:25,709] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='validar_calidad' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.709-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='validar_calidad' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.709-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2026-11-05T21:44:25.733-0500] {rapidgo_seguridad.py:113} INFO - Calidad: procesados=2 invalidos=1 validos=1; rechazos=/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl
+[2026-11-05 21:44:25,736] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl', 'estado': 'con_rechazos'}
+[2026-11-05T21:44:25.736-0500] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl', 'estado': 'con_rechazos'}
+[2026-11-05T21:44:25.746-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-11-05T21:44:25.746-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=rapidgo_seguridad_semanal, task_id=validar_calidad, run_id=manual__2026-11-06T02:43:54.855824+00:00, execution_date=20261106T024354, start_date=, end_date=20261106T024425
+[2026-11-05T21:44:25.755-0500] {dag.py:4410} INFO - [DAG TEST] end task task_id=validar_calidad map_index=-1
+[2026-11-05T21:44:25.768-0500] {dag.py:4396} INFO - [DAG TEST] starting task_id=agregar_datos map_index=-1
+[2026-11-05T21:44:25.768-0500] {dag.py:4399} INFO - [DAG TEST] running task <TaskInstance: rapidgo_seguridad_semanal.agregar_datos manual__2026-11-06T02:43:54.855824+00:00 [scheduled]>
+[2026-11-05 21:44:25,787] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='agregar_datos' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.787-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='agregar_datos' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.787-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2026-11-05 21:44:25,801] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl', 'estado': 'con_rechazos', 'ruta': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/agregados.csv', 'repartidores': 1}
+[2026-11-05T21:44:25.801-0500] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl', 'estado': 'con_rechazos', 'ruta': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/agregados.csv', 'repartidores': 1}
+[2026-11-05T21:44:25.811-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-11-05T21:44:25.811-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=rapidgo_seguridad_semanal, task_id=agregar_datos, run_id=manual__2026-11-06T02:43:54.855824+00:00, execution_date=20261106T024354, start_date=, end_date=20261106T024425
+[2026-11-05T21:44:25.822-0500] {dag.py:4410} INFO - [DAG TEST] end task task_id=agregar_datos map_index=-1
+[2026-11-05T21:44:25.830-0500] {dag.py:4396} INFO - [DAG TEST] starting task_id=generar_reporte map_index=-1
+[2026-11-05T21:44:25.830-0500] {dag.py:4399} INFO - [DAG TEST] running task <TaskInstance: rapidgo_seguridad_semanal.generar_reporte manual__2026-11-06T02:43:54.855824+00:00 [scheduled]>
+[2026-11-05 21:44:25,849] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='generar_reporte' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.849-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='kevin' AIRFLOW_CTX_DAG_ID='rapidgo_seguridad_semanal' AIRFLOW_CTX_TASK_ID='generar_reporte' AIRFLOW_CTX_EXECUTION_DATE='2026-11-06T02:43:54.855824+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-06T02:43:54.855824+00:00'
+[2026-11-05T21:44:25.849-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2026-11-05 21:44:25,852] {python.py:240} INFO - Done. Returned value was: {'ruta': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/reporte.json', 'estado': 'con_rechazos', 'eventos': 1}
+[2026-11-05T21:44:25.852-0500] {python.py:240} INFO - Done. Returned value was: {'ruta': '/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/reporte.json', 'estado': 'con_rechazos', 'eventos': 1}
+[2026-11-05T21:44:25.858-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-11-05T21:44:25.859-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=rapidgo_seguridad_semanal, task_id=generar_reporte, run_id=manual__2026-11-06T02:43:54.855824+00:00, execution_date=20261106T024354, start_date=, end_date=20261106T024425
+[2026-11-05T21:44:25.869-0500] {dag.py:4410} INFO - [DAG TEST] end task task_id=generar_reporte map_index=-1
+[2026-11-05T21:44:25.871-0500] {dagrun.py:854} INFO - Marking run <DagRun rapidgo_seguridad_semanal @ 2026-11-06 02:43:54.855824+00:00: manual__2026-11-06T02:43:54.855824+00:00, state:running, queued_at: None. externally triggered: False> successful
+[2026-11-05T21:44:25.871-0500] {dagrun.py:905} INFO - DagRun Finished: dag_id=rapidgo_seguridad_semanal, execution_date=2026-11-06 02:43:54.855824+00:00, run_id=manual__2026-11-06T02:43:54.855824+00:00, run_start_date=2026-11-06 02:43:54.855824+00:00, run_end_date=2026-11-06 02:44:25.871890+00:00, run_duration=31.016066, state=success, external_trigger=False, run_type=manual, data_interval_start=2026-11-06 02:43:54.855824+00:00, data_interval_end=2026-11-06 02:43:54.855824+00:00, dag_hash=None
+{
+  "dag_id": "rapidgo_seguridad_semanal",
+  "run_id": "manual__2026-11-06T02:43:54.855824+00:00",
+  "state": "success",
+  "modo": "DAG.test con Airflow real; no Docker ni scheduler",
+  "tasks": {
+    "validar_calidad": {
+      "state": "success",
+      "try_number": 2
+    },
+    "agregar_datos": {
+      "state": "success",
+      "try_number": 1
+    },
+    "generar_reporte": {
+      "state": "success",
+      "try_number": 1
+    }
+  },
+  "xcom": {
+    "validar_calidad": {
+      "archivos": 1,
+      "procesados": 2,
+      "invalidos": 1,
+      "eventos": 1,
+      "ruta_validos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet",
+      "ruta_rechazos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl",
+      "estado": "con_rechazos"
+    },
+    "agregar_datos": {
+      "archivos": 1,
+      "procesados": 2,
+      "invalidos": 1,
+      "eventos": 1,
+      "ruta_validos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/validos.parquet",
+      "ruta_rechazos": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/rechazados.jsonl",
+      "estado": "con_rechazos",
+      "ruta": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/agregados.csv",
+      "repartidores": 1
+    },
+    "generar_reporte": {
+      "ruta": "/tmp/rapidgo-calidad-x6livnl6/reports/e7008ce75b4809db7a3d151a/reporte.json",
+      "estado": "con_rechazos",
+      "eventos": 1
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"event_id":"invalido","repartidor_id":"REP-009","pedido_id":"PED-1024","timestamp":"2026-10-22T14:30:00Z","gps":{"latitud":4.732,"longitud":-74.264},"velocidad_kmh":68.5,"bateria_pct":101,"estado":"EN_RUTA","desvio_metros":180,"motivos":"bateria_pct_invalido"}
