@@ -36,6 +36,7 @@ services:
       PYTHONPATH: /workspace
     volumes:
       - .:/workspace:ro
+      - ./datalake:/workspace/datalake
       - spark-state:/state
     depends_on:
       kafka:
