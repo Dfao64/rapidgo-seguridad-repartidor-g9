@@ -1,0 +1,24 @@
+# Ejecutar junto al compose principal: docker compose -f docker-compose.yml -f docker-compose.airflow.yml up -d
+services:
+  airflow:
+    image: apache/airflow:2.10.5-python3.11
+    user: "${AIRFLOW_UID:-50000}:0"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/state/airflow.db
+      _PIP_ADDITIONAL_REQUIREMENTS: "pandas pyarrow"
+      RAPIDGO_DATALAKE_ROOT: /opt/airflow/datalake
+      RAPIDGO_REPORTS_ROOT: /opt/airflow/reports
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags:ro
+      - ./datalake:/opt/airflow/datalake:ro
+      - ./airflow/reports:/opt/airflow/reports
+      - airflow-state:/opt/airflow/state
+      - airflow-logs:/opt/airflow/logs
+    command: standalone
+volumes:
+  airflow-state:
+  airflow-logs:
