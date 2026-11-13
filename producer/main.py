@@ -77,11 +77,11 @@ def encode(event):
     return json.dumps(event, ensure_ascii=False, allow_nan=False, sort_keys=True).encode("utf-8")
 
 
-def publish(a, client, sleep=time.sleep, clock=time.monotonic):
+def publish(a, client, sleep=time.sleep, clock=time.monotonic, *, records=None):
     """Wait for broker ACK before reporting success; retain per-key order."""
     total = 0
     deadline = clock()
-    for event in events(a):
+    for event in events(a) if records is None else records:
         if total and total % a.riders == 0:
             deadline += a.interval
             sleep(max(0, deadline - clock()))

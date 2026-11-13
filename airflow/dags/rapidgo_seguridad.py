@@ -179,10 +179,19 @@ def agregar_datos(**context):
             _fail("Agregación: snapshot no coincide con conteo validado")
         df["bateria_critica_calculada"] = df["bateria_pct"] <= 15
         df["exceso_velocidad_calculado"] = df["velocidad_kmh"] > 60
+        # Los Parquet anteriores al contrato de desvío pueden omitir la columna.
+        deviation = df.get("desvio_metros", pd.Series(index=df.index, dtype=float))
+        df["desvio_informado"] = deviation.notna()
+        df["desvio_critico_calculado"] = deviation.gt(300)
         summary = df.groupby("repartidor_id").agg(
             eventos=("event_id", "count"), velocidad_promedio=("velocidad_kmh", "mean"),
             eventos_bateria_critica=("bateria_critica_calculada", "sum"),
+            eventos_con_desvio=("desvio_informado", "sum"),
+            eventos_desvio_critico=("desvio_critico_calculado", "sum"),
             eventos_exceso_velocidad=("exceso_velocidad_calculado", "sum")).reset_index()
+        summary["bateria_critica_pct"] = 100 * summary.eventos_bateria_critica / summary.eventos
+        summary["desvio_critico_pct"] = (
+            100 * summary.eventos_desvio_critico / summary.eventos_con_desvio.where(summary.eventos_con_desvio > 0))
         out = _directory(context) / "agregados.csv"
         summary.to_csv(out, index=False)
     except Exception:

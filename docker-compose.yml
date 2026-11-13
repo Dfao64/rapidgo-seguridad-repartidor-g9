@@ -29,7 +29,9 @@ services:
       retries: 24
       start_period: 15s
   spark:
-    image: apache/spark:3.5.7-python3
+    image: rapidgo-spark:3.5.7
+    build:
+      context: ./spark
     user: "0:0"
     working_dir: /workspace
     environment:

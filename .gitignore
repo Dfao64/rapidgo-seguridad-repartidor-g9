@@ -223,6 +223,7 @@ datalake/raw/*
 datalake/processed/*
 datalake/curated/*
 datalake/checkpoints/*
+datalake/semana4-*/
 !datalake/raw/.gitkeep
 !datalake/processed/.gitkeep
 !datalake/curated/.gitkeep
