@@ -1,0 +1,33 @@
+name: RapidGo Semana 4 E2E
+
+on:
+  push:
+    branches: [feature/semana4-e2e-daniel]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pandas pyarrow kafka-python
+      - run: python scripts/semana4_e2e.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapidgo-semana4-e2e-${{ github.run_id }}
+          path: |
+            datalake/semana4-*/*.json
+            datalake/semana4-*/*.csv
+            datalake/semana4-*/*.log
+            datalake/semana4-*/reports/**/*
+          if-no-files-found: warn

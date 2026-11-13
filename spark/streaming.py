@@ -41,13 +41,16 @@ def parse_events(source):
             .withColumn("timestamp_utc", F.to_timestamp("evento.timestamp", "yyyy-MM-dd'T'HH:mm:ss'Z'")))
 
 
-def unique_valid(parsed):
+def unique_valid(parsed, *, deduplicate=True):
     from pyspark.sql import functions as F
     # Sin watermark: deduplicación histórica dentro del checkpoint de esta consulta.
-    return (parsed.filter("valido").select(
+    validos = parsed.filter("valido").select(
         "topic", "partition", "offset", "kafka_timestamp", "key_original", "value_original",
         "timestamp_utc", "evento.*")
-        .drop("_corrupt_record").dropDuplicates(["event_id"])
+    validos = validos.drop("_corrupt_record")
+    if deduplicate:
+        validos = validos.dropDuplicates(["event_id"])
+    return (validos
         .withColumn("incluye_kpi3", F.col("desvio_metros").isNotNull())
         .withColumn("exceso_velocidad", F.col("velocidad_kmh") > UMBRAL_VELOCIDAD_KMH)
         .withColumn("bateria_critica", F.col("bateria_pct") <= UMBRAL_BATERIA_PCT)
