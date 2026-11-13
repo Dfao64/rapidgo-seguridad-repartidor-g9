@@ -3,22 +3,22 @@
 1. **Verificar contenedores activos de Kafka, Spark y Airflow**
    - Comando:
      ```powershell
-     docker-compose ps
-     docker-compose -f docker-compose.airflow.yml ps
+     docker compose ps
+     docker compose -f docker-compose.airflow.yml ps
      ```
    - Resultado esperado: Los contenedores `kafka`, `spark` y `airflow` aparecen en estado `Up` / `running`.
 
 2. **Verificar el topic de Kafka y sus 3 particiones (ADR-001)**
    - Comando:
      ```powershell
-     docker-compose exec -T kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --describe --topic rapidgo.seguridad.repartidor.v1
+     docker compose exec -T kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --describe --topic rapidgo.seguridad.repartidor.v1
      ```
    - Resultado esperado: La consola muestra el topic `rapidgo.seguridad.repartidor.v1` con `PartitionCount: 3` (particiones 0, 1 y 2).
 
 3. **Iniciar el procesamiento en Spark Structured Streaming (Terminal 1)**
    - Comando:
      ```powershell
-     docker-compose exec -T spark /opt/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.7 /workspace/spark/datalake.py --datalake /workspace/datalake --ventana '1 minute' --watermark '1 minute'
+     docker compose exec -T spark /opt/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.7 /workspace/spark/datalake.py --datalake /workspace/datalake --ventana '1 minute' --watermark '1 minute'
      ```
    - Resultado esperado: Spark inicia la sesión de streaming y queda escuchando nuevos eventos del topic de Kafka.
 
