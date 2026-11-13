@@ -8,6 +8,7 @@ import sys
 import time
 import uuid
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -32,7 +33,16 @@ def write_json(path, data):
 def read_rows(directory):
     import pandas as pd
 
-    files = sorted(directory.rglob("*.parquet"))
+    # Spark publica el log del sink después de cerrar los Parquet del batch.
+    # La ruta de cada entrada es la del contenedor; las salidas son planas.
+    files = set()
+    for entry in (directory / "_spark_metadata").iterdir() if (directory / "_spark_metadata").exists() else ():
+        if not entry.name.removesuffix(".compact").isdigit():
+            continue
+        for line in entry.read_text(encoding="utf-8").splitlines()[1:]:
+            path = urlsplit(json.loads(line)["path"]).path
+            files.add(directory / Path(unquote(path)).name)
+    files = sorted(files)
     return pd.concat([pd.read_parquet(file) for file in files], ignore_index=True) if files else pd.DataFrame()
 
 
