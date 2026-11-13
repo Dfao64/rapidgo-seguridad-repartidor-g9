@@ -1,63 +1,36 @@
-# rapidgo-seguridad-repartidor-g9
+# RapidGo 360
 
-# RapidGo 360 - Grupo 9
+Sistema de procesamiento de eventos en tiempo real y orquestación batch que monitorea las condiciones operativas de los repartidores en ruta para detectar riesgos de seguridad (exceso de velocidad, batería crítica en el dispositivo móvil y desviaciones de ruta).
 
-Proyecto Final de Big Data
-Universidad de Cundinamarca
+## Variante del proyecto
+Variante #2: Seguridad del repartidor
 
-## Variante #2: Seguridad del repartidor
+## Equipo
+| Integrante | Rol |
+|---|---|
+| Deimer Hincapié | Documentación y release |
+| Daniel Abello | Integración y pruebas end-to-end |
+| Kevin Sánchez | Quality Gate y GitHub Actions |
 
-Sistema de análisis de eventos para monitorear
-condiciones operativas de los repartidores.
+## Arquitectura
+Producer → Kafka → Spark → Data Lake → Airflow
 
-## Integrantes
+El Producer publica eventos JSON de telemetría en el topic `rapidgo.seguridad.repartidor.v1` de Apache Kafka (3 particiones por `repartidor_id`). Spark Structured Streaming consume el flujo en tiempo real, descarta eventos inválidos según el contrato de datos y escribe archivos Parquet en las capas `raw`, `processed` y `curated` del Data Lake. Finalmente, Apache Airflow ejecuta el DAG `rapidgo_seguridad_semanal` (5 tareas) para validar calidad, agregar indicadores, generar reportes CSV/JSON y auditar la consistencia de salida. Detalle en [docs/arquitectura.md](docs/arquitectura.md).
 
-- Daniel Abello
-- Kevin Sánchez
-- Deimer Hincapié
+## KPIs y alertas
+- **KPI 1 (Velocidad promedio por repartidor):** `sum(velocidad_kmh) / count(eventos válidos)` agrupado por `repartidor_id` y ventana temporal.
+- **KPI 2 (Eventos con batería crítica):** Cantidad y porcentaje de eventos válidos con `bateria_pct <= 15` por repartidor y ventana.
+- **KPI 3 (Desviaciones de ruta):** Cantidad y porcentaje de eventos válidos con `desvio_metros > 300` frente a la ruta de referencia (excluyendo del denominador los eventos sin `desvio_metros`).
+- **Alerta 1 (Exceso de velocidad — `EXCESO_VELOCIDAD`):** Se activa por evento cuando `velocidad_kmh > 60`.
+- **Alerta 2 (Batería crítica — `BATERIA_CRITICA`):** Se activa por evento cuando `bateria_pct <= 15`.
 
-## Arquitectura prevista
+## Instalación y ejecución
+Ver [docs/instalacion.md](docs/instalacion.md)
 
-Producer → Apache Kafka → Spark Structured
-Streaming → Data Lake → Apache Airflow
-→ KPIs y alertas
+## Pruebas y CI
+Para correr las pruebas automatizadas y validar la configuración en local:
 
-## Indicadores propuestos
-
-1. Velocidad promedio por repartidor.
-2. Eventos con batería crítica.
-3. Desviaciones de ruta.
-
-## Tecnologías
-
-- Python
-- Apache Kafka
-- Apache Spark
-- Apache Airflow
-- Docker
-- GitHub Actions
-
-## Organización del repositorio
-
-- producer/: generación de eventos.
-- spark/: procesamiento streaming.
-- airflow/dags/: orquestación.
-- datalake/: almacenamiento por capas.
-- samples/: ejemplos de eventos.
-- tests/: pruebas automatizadas.
-- docs/: arquitectura, decisiones y checkpoints.
-
-## Releases
-
-- Semana 1: v0.1.0-foundation
-- Semana 2: v0.2.0-streaming
-- Semana 3: v0.3.0-orchestration
-- Semana 4: v1.0.0
-
-## Estado actual
-
-Semana 1: preparación de arquitectura,
-contratos y estructura inicial.
-
-Los componentes del pipeline aún no están
-implementados.
+```powershell
+python -m pip install -r requirements.txt
+python -m pytest tests/ -v
+docker compose -f docker-compose.yml -f docker-compose.airflow.yml config --quiet
