@@ -9,7 +9,7 @@
 ## Levantar el entorno
 1. Crear el entorno virtual e instalar dependencias en la raíz del repositorio:
 ```powershell
-cd C:\Users\deime\Documents\rapidgo-seguridad-repartidor-g9
+cd rapidgo-seguridad-repartidor-g9
 py -m venv .venv
 .\.venv\Scripts\python -m pip install --upgrade pip
 .\.venv\Scripts\python -m pip install -r requirements.txt

@@ -34,3 +34,13 @@ Para correr las pruebas automatizadas y validar la configuración en local:
 python -m pip install -r requirements.txt
 python -m pytest tests/ -v
 docker compose -f docker-compose.yml -f docker-compose.airflow.yml config --quiet
+```
+## Documentación
+- [Arquitectura](docs/arquitectura.md)
+- [Instalación y ejecución](docs/instalacion.md)
+- [Decisiones técnicas (ADR)](docs/adr/README.md)
+- [Evidencias](docs/evidencias/README.md)
+- [Guion de demostración](docs/demo.md)
+
+## Release
+v1.0.0
