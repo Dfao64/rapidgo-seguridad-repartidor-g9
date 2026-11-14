@@ -1,0 +1,34 @@
+Job 132228947516
+2026-11-13T23:11:42.3155872Z tests/test_semana4_integracion.py::test_eventos_invalidos_no_generan_alertas_ni_kpis[velocidad_kmh--1] PASSED [ 73%]
+2026-11-13T23:11:42.3161997Z tests/test_semana4_integracion.py::test_eventos_invalidos_no_generan_alertas_ni_kpis[bateria_pct-101] PASSED [ 74%]
+2026-11-13T23:11:47.7217352Z ======================= 111 passed, 6 warnings in 21.34s =======================
+
+Job 132228947890
+2026-11-13T23:12:25.6847056Z [2026-11-13T23:12:25.684+0000] {rapidgo_seguridad.py:159} INFO - Calidad: procesados=2 invalidos=1 validos=1; rechazos=/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/rechazados.jsonl
+2026-11-13T23:12:25.6869712Z [2026-11-13 23:12:25,686] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/rechazados.jsonl', 'estado': 'con_rechazos'}
+2026-11-13T23:12:25.6874259Z [2026-11-13T23:12:25.686+0000] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/rechazados.jsonl', 'estado': 'con_rechazos'}
+2026-11-13T23:12:25.7390646Z [2026-11-13 23:12:25,738] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/rechazados.jsonl', 'estado': 'con_rechazos', 'ruta': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/agregados.csv', 'repartidores': 1}
+2026-11-13T23:12:25.7394900Z [2026-11-13T23:12:25.738+0000] {python.py:240} INFO - Done. Returned value was: {'archivos': 1, 'procesados': 2, 'invalidos': 1, 'eventos': 1, 'ruta_validos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/validos.parquet', 'ruta_rechazos': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/rechazados.jsonl', 'estado': 'con_rechazos', 'ruta': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/agregados.csv', 'repartidores': 1}
+2026-11-13T23:12:25.8083089Z [2026-11-13 23:12:25,807] {python.py:240} INFO - Done. Returned value was: {'estado': 'verificado', 'eventos': 1, 'repartidores': 1, 'reporte': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/reporte.json', 'agregado': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/agregados.csv'}
+2026-11-13T23:12:25.8086019Z [2026-11-13T23:12:25.807+0000] {python.py:240} INFO - Done. Returned value was: {'estado': 'verificado', 'eventos': 1, 'repartidores': 1, 'reporte': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/reporte.json', 'agregado': '/tmp/rapidgo-calidad-z1a3mj_9/reports/f155bf89132c727dd2cd15df/agregados.csv'}
+2026-11-13T23:12:25.8214460Z [2026-11-13T23:12:25.821+0000] {dagrun.py:854} INFO - Marking run <DagRun rapidgo_seguridad_semanal @ 2026-11-13 23:11:55.051310+00:00: manual__2026-11-13T23:11:55.051310+00:00, state:running, queued_at: None. externally triggered: False> successful
+2026-11-13T23:12:25.8218081Z [2026-11-13T23:12:25.821+0000] {dagrun.py:905} INFO - DagRun Finished: dag_id=rapidgo_seguridad_semanal, execution_date=2026-11-13 23:11:55.051310+00:00, run_id=manual__2026-11-13T23:11:55.051310+00:00, run_start_date=2026-11-13 23:11:55.051310+00:00, run_end_date=2026-11-13 23:12:25.821313+00:00, run_duration=30.770003, state=success, external_trigger=False, run_type=manual, data_interval_start=2026-11-13 23:11:55.051310+00:00, data_interval_end=2026-11-13 23:11:55.051310+00:00, dag_hash=None
+2026-11-13T23:12:25.8321218Z   "state": "success",
+2026-11-13T23:12:25.8323799Z       "state": "success",
+2026-11-13T23:12:25.8324268Z       "try_number": 1
+2026-11-13T23:12:25.8325494Z       "state": "success",
+2026-11-13T23:12:25.8325937Z       "try_number": 2
+2026-11-13T23:12:25.8327146Z       "state": "success",
+2026-11-13T23:12:25.8327512Z       "try_number": 1
+2026-11-13T23:12:25.8328287Z       "state": "success",
+2026-11-13T23:12:25.8328565Z       "try_number": 1
+2026-11-13T23:12:25.8329311Z       "state": "success",
+2026-11-13T23:12:25.8329584Z       "try_number": 1
+2026-11-13T23:12:25.8333444Z       "invalidos": 1,
+2026-11-13T23:12:25.8336193Z       "invalidos": 1,
+2026-11-13T23:12:25.8340724Z       "estado": "verificado",
+2026-11-13T23:12:26.8259852Z Artifact airflow-integracion-59.zip successfully finalized. Artifact ID 14084443527
+
+Job 132210037611
+2026-11-13T22:30:27.9920094Z   "estado": "verificado"
+2026-11-13T22:30:40.5145501Z Artifact rapidgo-semana4-e2e-43519537450.zip successfully finalized. Artifact ID 14081723332

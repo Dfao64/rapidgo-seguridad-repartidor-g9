@@ -1,0 +1,13 @@
+{
+  "shell": "bash --noprofile --norc -eo pipefail",
+  "scenario": "pytest falla deliberadamente y su salida pasa por tee",
+  "expected_exit": 1,
+  "actual_exit": 1,
+  "result": "PASS",
+  "stdout": "F                                                                        [100%]\n=================================== FAILURES ===================================\n__________________________________ test_fallo __________________________________\n\n    def test_fallo():\n>       assert False, \"fallo deliberado del control negativo\"\nE       AssertionError: fallo deliberado del control negativo\nE       assert False\n\ntest_fallo_controlado.py:2: AssertionError\n=========================== short test summary info ============================\nFAILED test_fallo_controlado.py::test_fallo - AssertionError: fallo deliberad...\n1 failed in 0.01s\n",
+  "workflow_triggers": [
+    "push",
+    "pull_request",
+    "workflow_dispatch"
+  ]
+}

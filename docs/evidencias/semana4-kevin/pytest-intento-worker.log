@@ -1,0 +1,4 @@
+Extracto del intento local fallido; no es el resultado final.
+E   ModuleNotFoundError: No module named 'pyarrow'
+ModuleNotFoundError: No module named 'pyarrow'
+================== 5 failed, 106 passed, 6 warnings in 13.42s ==================

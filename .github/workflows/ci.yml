@@ -8,9 +8,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
 jobs:
   validar:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -25,17 +33,32 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Validar sintaxis Python
-        run: python -m compileall producer spark airflow/dags tests
+        run: |
+          mkdir -p evidence/quality-gate
+          git rev-parse HEAD > evidence/quality-gate/commit.txt
+          python --version > evidence/quality-gate/python.txt
+          python -m pip freeze > evidence/quality-gate/dependencies.txt
+          python -m compileall producer spark airflow/dags scripts tests 2>&1 | tee evidence/quality-gate/compileall.log
 
       - name: Ejecutar pruebas
-        run: pytest -v
+        run: python -m pytest tests/ -v --junitxml=evidence/quality-gate/pytest.xml 2>&1 | tee evidence/quality-gate/pytest.log
 
       - name: Validar Docker Compose
-        run: docker compose config --quiet
+        run: docker compose config --quiet 2>&1 | tee evidence/quality-gate/compose.log
+
+      - name: Publicar evidencia del Quality Gate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-gate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence/quality-gate/
+          if-no-files-found: error
+          retention-days: 30
 
   airflow_integration:
     name: Integración DAG con Airflow 2.10.5
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v7
