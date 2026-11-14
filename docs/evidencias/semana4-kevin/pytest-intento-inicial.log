@@ -1,0 +1,4 @@
+Extracto del intento local fallido; no es el resultado final.
+E                   : java.net.BindException: bind(..) failed with error(-99): Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+java.net.BindException: bind(..) failed with error(-99): Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+=================== 106 passed, 1 warning, 5 errors in 3.27s ===================

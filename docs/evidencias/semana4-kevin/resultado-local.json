@@ -1,0 +1,19 @@
+{
+  "base_sha": "fa7473061ffb8df2ffd11f43f5cdc9b0d0a211a3",
+  "python": "3.12.14",
+  "pytest": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "111",
+    "time": "18.198",
+    "timestamp": "2026-11-13T22:06:07.652801-05:00",
+    "hostname": "b94d66325df4"
+  },
+  "env": {
+    "SPARK_LOCAL_IP": "127.0.0.1",
+    "PYSPARK_PYTHON": "/tmp/rapidgo-quality-venv/bin/python"
+  },
+  "docker_local": "not installed; validation checked on GitHub"
+}
